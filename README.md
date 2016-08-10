@@ -16,11 +16,6 @@ Let's look at the example Switch.ino (only the parts concerning Modbus will be c
 ```
 Inclusion of the necessary libraries.
 
-```
-const int SWITCH_ISTS = 100;
-```
-Sets the Modbus register to represent the switch. This value is the offset (0-based) to be placed in its supervisory or testing software.
-Note that if your software uses offsets 1-based the set value there should be 101, for this example.
 
 ```
 ModbusIP mb;
@@ -44,27 +39,3 @@ void config (uint8_t * mac, IPAddress ip, IPAddress dns)
 void config (uint8_t * mac, IPAddress ip, IPAddress dns, gateway IPAddress)
 void config (uint8_t * mac, IPAddress ip, IPAddress dns, IPAddress gateway, subnet IPAddress)
 ```
-
-Then we have:
-```
-mb.addIsts (SWITCH_ISTS);
-```
-Adds the register type Input Status (digital input) that is responsible for detecting if a switch is in state on or off.
-The library allows you to set an initial value for the register:
-
-```
-mb.addIsts (SWITCH_ISTS, true);
-```
-In this case the register is added and set to true. If you use the first form the default value is false.
-
-
-```
-mb.task ();
-```
-This method makes all magic, answering requests and changing the registers if necessary, it should be called only once, early in the loop.
-
-
-```
-mb.Ists (SWITCH_ISTS, digitalRead (switchPin));
-```
-Finally the value of SWITCH_ISTS register changes as the state of the selected digital input.
