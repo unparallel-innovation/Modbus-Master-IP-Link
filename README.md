@@ -1,6 +1,6 @@
 Modbus Gateway Library for Arduino.
-Brigde between a Modbus Master over TCP/IP with Modbus Slaves over Serial/UART (RS-232, RS-485) and LoRa RN-2483).
 ==========================================================================
+<h2>Brigde between a Modbus Master over TCP/IP with Modbus Slaves over Serial/UART (RS-232, RS-485) and LoRa RN-2483).</h2>
 
 A library that allows a Modbus master to communicate via IP with a Arduino that converts the messages to (RS-232, RS-485) and LoRa RN-2483
 
