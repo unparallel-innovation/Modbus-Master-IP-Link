@@ -50,8 +50,9 @@ modbus.configLoRa(&Serial2, LORABAUD, LORATIMEOUT, RESETPIN);
 
 This methods configure the Serial port and the LoRa radio with the following format:
 ```
-modbus.configSerial(Modbus Serial port, Serial monitor port (for status messages), Modbus baudrate, Serial Format, Timeout, Tx Enable Pin);
-modbus.configLoRa(LoRa Serial port, LoRa baudrate, timeout, LoRa resetPin);
+void configSerial(HardwareSerial* SerialPort, HardwareSerial* DebugSerialPort, long baud, unsigned char byteFormat, long _timeout, unsigned char _TxEnablePin);
+
+void configLoRa(HardwareSerial* LoRaPort, long baud, long _timeout, unsigned char resetpin);
 ```
 
 ```
