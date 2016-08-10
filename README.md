@@ -12,21 +12,24 @@ Let's look at the example Switch.ino (only the parts concerning Modbus will be c
 #include <SPI.h>
 #include <Ethernet.h>
 #include <Modbus.h>
-#include <ModbusIP.h>
+#include <ModBusIPSerialLoRaLink.h>
 ```
 Inclusion of the necessary libraries.
 
 
 ```
-ModbusIP mb;
+ModbusIPSerialLoRaLink modbus;
 ```
 Create the mb instance (ModbusIP) to be used.
 
 
 ```
-mac byte [] = {0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED};
-ip byte [] = {192, 168, 1, 120};
-mb.config (mac, ip);
+byte ip[] = { 192, 168, 1, 120 };
+byte dns[] = { 8, 8, 8, 8 };
+byte gateway[] = { 192, 168, 1, 1 };
+byte subnet[] = { 255, 255, 255, 0 };
+
+modbus.configIP(mac, ip, dns, gateway, subnet);
 ```
 
 Sets the Ethernet shield. The values ​​of the MAC Address and the IP are passed by the config() method.
@@ -39,3 +42,21 @@ void config (uint8_t * mac, IPAddress ip, IPAddress dns)
 void config (uint8_t * mac, IPAddress ip, IPAddress dns, gateway IPAddress)
 void config (uint8_t * mac, IPAddress ip, IPAddress dns, IPAddress gateway, subnet IPAddress)
 ```
+
+```
+modbus.configSerial(&Serial1, &Serial, MODBAUD, SERIAL_8N2, MODTIMEOUT, TXENABLEPIN);
+modbus.configLoRa(&Serial2, LORABAUD, LORATIMEOUT, RESETPIN);
+```
+
+This methods configure the Serial port and the LoRa radio with the following format:
+```
+modbus.configSerial(Modbus Serial port, Serial monitor port (for status messages), Modbus baudrate, Serial Format, Timeout, Tx Enable Pin);
+modbus.configLoRa(LoRa Serial port, LoRa baudrate, timeout, LoRa resetPin);
+```
+
+```
+modbus.update();
+```
+
+This method makes all magic, answering requests and convering messages between protocols.
+It should be called only once, early in the loop.
