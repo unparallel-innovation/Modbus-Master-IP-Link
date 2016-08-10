@@ -61,3 +61,8 @@ modbus.update();
 
 This method makes all magic, answering requests and convering messages between protocols.
 It should be called only once, early in the loop.
+
+
+License
+=======
+The code in this repo is licensed under the BSD New License. See LICENSE.txt for more info.
