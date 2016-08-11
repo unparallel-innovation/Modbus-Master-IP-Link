@@ -4,7 +4,6 @@ Modbus Gateway Library for Arduino.
 
 A library that allows a Modbus master to communicate via IP with a Arduino that converts the messages to (RS-232, RS-485) and LoRa RN-2483
 
-<h3>Modbus IP</h3>
 
 There are four examples that can be accessed from the Arduino interface, once you have installed the library.
 Let's look at the example Switch.ino (only the parts concerning Modbus will be commented):
