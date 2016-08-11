@@ -1,3 +1,8 @@
+/*
+    ModBusIPSerialLink.cpp - Source for ModBusIPSerialLink Library
+    Copyright (C) 2016 UNPARALLEL INOVATION
+*/
+
 #include "ModBusIPSerialLink.h"
 #include "HardwareSerial.h"
 

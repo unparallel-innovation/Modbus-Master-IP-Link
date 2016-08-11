@@ -1,3 +1,8 @@
+/*
+    ModBusIPSerialLoRaLink.h - Header for ModBusIPSerialLoRaLink Library
+    Copyright (C) 2016 UNPARALLEL INOVATION
+*/
+
 #ifndef MODBUS_IP_SERIAL_LINK_H
 #define MODBUS_IP_SERIAL_LINK_H
 

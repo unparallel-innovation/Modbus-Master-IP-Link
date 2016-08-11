@@ -1,3 +1,8 @@
+/*
+    ModBusIPSerialLoRaLink.cpp - Source for ModBusIPSerialLoRaLink Library
+    Copyright (C) 2016 UNPARALLEL INOVATION
+*/
+
 #include "ModBusIPSerialLoRaLink.h"
 #include "HardwareSerial.h"
 
@@ -380,7 +385,7 @@ void ModbusIPSerialLoRaLink::configSerial(HardwareSerial* SerialPort,
 				else {
 					this->processReply();
 				}
-				
+
 				String str = (*LoraPort).readStringUntil('\n');
 
 			}
