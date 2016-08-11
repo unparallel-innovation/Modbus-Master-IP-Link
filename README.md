@@ -57,6 +57,8 @@ void configSerial(HardwareSerial* SerialPort, HardwareSerial* DebugSerialPort, l
 void configLoRa(HardwareSerial* LoRaPort, long baud, long _timeout, unsigned char resetpin);
 ```
 
+==============
+
 ```
 modbus.update();
 ```
