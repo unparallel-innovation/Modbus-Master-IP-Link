@@ -157,17 +157,20 @@ void ModBusGateway_RS485_RFM95_to_TCP_IP::task() {
 			digitalWrite(TxEnablePin, LOW);
 
 			(*DebugPort).println(F("SENT Serial CMD"));
-
-			_manager.sendtoWait(_frame, _len, _frame[0]);
-
 			// (*DebugPort).print(F("Len: "));
 			// (*DebugPort).println(_len);
-			(*DebugPort).println(F("SENT LoRa CMD"));
 			for (unsigned char i = 0; i < _len; i++) {
 				(*DebugPort).print(_frame[i], DEC);
 				(*DebugPort).print(":");
 			}
 			(*DebugPort).println();
+
+			(*DebugPort).println(F("SENDING LoRa CMD"));
+
+			if(!_manager.sendtoWait(_frame, _len, _frame[0])) {
+		    (*DebugPort).println(F("FAILED to receive ACK"));
+			}
+
 			(*DebugPort).println(F("-----------------"));
 
 			delayStart = millis(); // start the timeout delay
@@ -205,7 +208,7 @@ void ModBusGateway_RS485_RFM95_to_TCP_IP::waiting_for_reply()
 		uint8_t from = 0;
 		rf95_len = size_of_buff;
 
-		if (_manager.recvfromAck(buff, &rf95_len, &from));
+		if (_manager.recvfromAck(buff, &rf95_len, &from))
 		{
 			buffer_len = rf95_len;
 
@@ -246,11 +249,8 @@ void ModBusGateway_RS485_RFM95_to_TCP_IP::waiting_for_reply()
 			else
 			this->processReply();
 		}
-		#ifdef DEBUG_MODE
-		else {
-			(*DebugPort).println(F("rfm95 recv failed"));
-		}
-		#endif
+		else
+	    (*DebugPort).println(F("FAILED to receive LoRa RESPONSE"));
 	}
 	if ((*ModbusPort).available()) // is there something to check?
 	{
