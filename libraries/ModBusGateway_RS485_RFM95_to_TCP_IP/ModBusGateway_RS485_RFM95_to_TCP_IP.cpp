@@ -202,8 +202,8 @@ void ModBusGateway_RS485_RFM95_to_TCP_IP::update()
 // get the serial data from the buffer
 void ModBusGateway_RS485_RFM95_to_TCP_IP::waiting_for_reply()
 {
-	if (_manager.available()) {
-
+	if (_manager.available())
+	{
 		unsigned char overflowFlag = 0;
 		uint8_t from = 0;
 		rf95_len = size_of_buff;
@@ -249,8 +249,9 @@ void ModBusGateway_RS485_RFM95_to_TCP_IP::waiting_for_reply()
 			else
 			this->processReply();
 		}
-		else
+		else {
 	    (*DebugPort).println(F("FAILED to receive LoRa RESPONSE"));
+		}
 	}
 	if ((*ModbusPort).available()) // is there something to check?
 	{

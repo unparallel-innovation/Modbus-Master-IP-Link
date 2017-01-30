@@ -33,13 +33,10 @@ void setup() {
   byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
 
   // The IP address for the shield
-  byte ip[] = { 10, 0, 1, 120 };
-  byte dns[] = { 8, 8, 8, 8 };
-  byte gateway[] = { 172, 20, 254, 1 };
-  byte subnet[] = { 255, 255, 255, 0 };
+  byte ip[] = { 172, 20, 254, 2 };
 
   //Config Modbus IP
-  modbus.configIP(mac, ip, dns, gateway, subnet);
+  modbus.configIP(mac, ip);
 }
 
 void loop() {
